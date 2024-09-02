@@ -40,5 +40,7 @@ bst.PostOrder();
 
 bst.Remove(1);
 bst.Print();
-bst.Remove(1);
+bst.Remove(8);
+bst.Print();
+bst.Remove(12);
 bst.Print();

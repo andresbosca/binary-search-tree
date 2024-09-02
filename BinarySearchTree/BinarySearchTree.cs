@@ -200,7 +200,7 @@ public class BinarySearchTree<T>
             if (level > 0)
             {
                 item.Parent = last[level - 1];
-                if (next == item.Parent.Node.Left)
+                if (next == item?.Parent?.Node?.Left)
                 {
                     item.Parent.Left = item;
                     item.EndPos = Math.Max(item.EndPos, item.Parent.StartPos - 1);
@@ -256,7 +256,9 @@ public class BinarySearchTree<T>
 
     internal void InOrder()
     {
+        Console.WriteLine("[");
         InOrderRecursively(Root);
+        Console.Write("]");
     }
 
     private void InOrderRecursively(Node<T>? node)
@@ -267,13 +269,16 @@ public class BinarySearchTree<T>
         }
 
         InOrderRecursively(node.Left);
-        Console.WriteLine(node.Data);
+        Console.Write(node.Data);
+        Console.Write(",");
         InOrderRecursively(node.Right);
     }
 
     internal void PreOrder()
     {
+        Console.WriteLine("[");
         PreOrderRecursively(Root);
+        Console.Write("]");
     }
 
     private void PreOrderRecursively(Node<T>? node)
@@ -283,14 +288,17 @@ public class BinarySearchTree<T>
             return;
         }
 
-        Console.WriteLine(node.Data);
+        Console.Write(node.Data);
+        Console.Write(",");
         PreOrderRecursively(node.Left);
         PreOrderRecursively(node.Right);
     }
 
     internal void PostOrder()
     {
+        Console.WriteLine("[");
         PostOrderRecursively(Root);
+        Console.Write("]");
     }
 
     private void PostOrderRecursively(Node<T>? node)
@@ -302,6 +310,7 @@ public class BinarySearchTree<T>
 
         PostOrderRecursively(node.Left);
         PostOrderRecursively(node.Right);
-        Console.WriteLine(node.Data);
+        Console.Write(node.Data);
+        Console.Write(",");
     }
 }
