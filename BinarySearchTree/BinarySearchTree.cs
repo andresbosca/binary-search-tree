@@ -18,6 +18,56 @@ public class BinarySearchTree<T>
         Root = InsertRecursively(Root, data);
     }
 
+    public void Remove(int id)
+    {
+        Root = RemoveRecursively(Root, id);
+    }
+
+    private Node<T>? RemoveRecursively(Node<T>? node, int id)
+    {
+        if (node == null)
+        {
+            return null;
+        }
+
+        if (id < node.Data.Id)
+        {
+            node.Left = RemoveRecursively(node.Left, id);
+        }
+        else if (id > node.Data.Id)
+        {
+            node.Right = RemoveRecursively(node.Right, id);
+        }
+        else
+        {
+            if (node.Left == null)
+            {
+                return node.Right;
+            }
+            else if (node.Right == null)
+            {
+                return node.Left;
+            }
+
+            node.Data = MinValue(node.Right);
+            node.Right = RemoveRecursively(node.Right, node.Data.Id);
+        }
+
+        return node;
+    }
+
+    private T MinValue(Node<T> node)
+    {
+        T minv = node.Data;
+        while (node.Left != null)
+        {
+            minv = node.Left.Data;
+            node = node.Left;
+        }
+
+        return minv;
+    }
+
     public T Search(int id)
     {
         return SearchRecursively(Root, id);
@@ -202,5 +252,56 @@ public class BinarySearchTree<T>
             right = left + s.Length;
         while (Console.CursorLeft < right)
             Console.Write(s);
+    }
+
+    internal void InOrder()
+    {
+        InOrderRecursively(Root);
+    }
+
+    private void InOrderRecursively(Node<T>? node)
+    {
+        if (node == null)
+        {
+            return;
+        }
+
+        InOrderRecursively(node.Left);
+        Console.WriteLine(node.Data);
+        InOrderRecursively(node.Right);
+    }
+
+    internal void PreOrder()
+    {
+        PreOrderRecursively(Root);
+    }
+
+    private void PreOrderRecursively(Node<T>? node)
+    {
+        if (node == null)
+        {
+            return;
+        }
+
+        Console.WriteLine(node.Data);
+        PreOrderRecursively(node.Left);
+        PreOrderRecursively(node.Right);
+    }
+
+    internal void PostOrder()
+    {
+        PostOrderRecursively(Root);
+    }
+
+    private void PostOrderRecursively(Node<T>? node)
+    {
+        if (node == null)
+        {
+            return;
+        }
+
+        PostOrderRecursively(node.Left);
+        PostOrderRecursively(node.Right);
+        Console.WriteLine(node.Data);
     }
 }
