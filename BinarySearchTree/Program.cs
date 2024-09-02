@@ -38,9 +38,14 @@ bst.PreOrder();
 Console.WriteLine("\nTravessia post-order:");
 bst.PostOrder();
 
+// Remove o ID 1 uma folha
 bst.Remove(1);
 bst.Print();
+
+// Remove o ID 8, que tem um filho
 bst.Remove(8);
 bst.Print();
+
+// Remove o ID 12, que tem dois filhos
 bst.Remove(12);
 bst.Print();

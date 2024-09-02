@@ -175,6 +175,8 @@ public class BinarySearchTree<T>
             Right;
     }
 
+    #region Print Arvore
+    // função mirabolante para exibir a árvore de forma mais visual
     public void Print(int spacing = 1, int topMargin = 2, int leftMargin = 2)
     {
         var root = Root;
@@ -253,7 +255,10 @@ public class BinarySearchTree<T>
         while (Console.CursorLeft < right)
             Console.Write(s);
     }
+    #endregion
 
+    // Métodos para travessia da árvore
+    #region Travessias
     internal void InOrder()
     {
         Console.WriteLine("[");
@@ -313,4 +318,5 @@ public class BinarySearchTree<T>
         Console.Write(node.Data);
         Console.Write(",");
     }
+    #endregion
 }
